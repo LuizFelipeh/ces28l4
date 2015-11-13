@@ -24,4 +24,10 @@ public class Invoice {
     public String toString() {
         return null;
     }
+
+    public void modifyItem(int index, ItemInfo itemInfo) throws InvalidParameterException {
+    }
+
+    public void removeItem(int index) throws InvalidParameterException {
+    }
 }

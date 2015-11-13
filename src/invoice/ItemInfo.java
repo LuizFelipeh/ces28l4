@@ -5,4 +5,5 @@ package invoice;
  */
 public class ItemInfo {
     private sellables.Sellable _sellable;
+    private float _quantity;
 }

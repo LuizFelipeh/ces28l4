@@ -3,12 +3,12 @@ Conceitos:
 Nota Fiscal (NF) contem itens de venda (IV).
 invoice.Item de venda (IV): Deve estar associado a um produto ou serviço pre-existente.
 Produto/Serviço (P/S): produtos e servicos que podem ser vendidos.
-todo: Imposto: Define taxas para produtos e servicos. Produtos e servicos especificos podem ter taxas diferenciadas.
-Validador de NF: depois de preenchida, a NF é validada: os impostos são calculados, um ID único é gerado, e depois disso a todo: NF é imutável.
+TODO: Imposto: Define taxas para produtos e servicos. Produtos e servicos especificos podem ter taxas diferenciadas.
+Validador de NF: depois de preenchida, a NF é validada: os impostos são calculados, um ID único é gerado, e depois disso a TODO: NF é imutável.
 
 
 Restricoes:
-todo: Restrição legal: NF não pode ter zero IV.
+TODO: Restrição legal: NF não pode ter zero IV.
 
 Restrição legal: Todos IV deve pertencer a exatamente uma NF.
 
@@ -18,32 +18,32 @@ Restrição legal: Todos IV se referirá a exatamente um produto ou serviço.
 
 Restrição legal: só podem ser adicionados à uma NF, P/Ss que estejam cadastrados no BD:P/S (Banco de Dados de Produtos e Serviços). Só o BD:P/S pode criar objetos P/S. O BD:P/S contém informação sobre produtos e serviços inclusive a categoria tributária de cada P/S especifico.
 
-todo: Restrição legal: Uma NF é criada no estado “em elaboração” e isto deve constar de uma eventual impressão.
+TODO: Restrição legal: Uma NF é criada no estado “em elaboração” e isto deve constar de uma TODO: eventual impressão.
 
-todo: Restrição legal: Uma vez que esteja completamente preenchida com todos os seus IV, uma NF deve ser validada (checa requisitos e calcula todos os impostos) e armazenada no subsistema BD:NF (Banco de Dados de NF), que também se encarrega de submeter na prefeitura.  Então, a NF deve passar para o estado “validada”, e deve ser então completamente imutavel. Nunca nenhum dado da NF inclusive de qualquer IV, deve ser modificado em uma NF validada. O BD:NF não deve aceitar nem validar nem gerar um ID para uma NF já validada, ou com dados inválidos. Se uma NF for corretamente validada, um objeto imutavel representando-a deve ser passado como resposta ao usuário-programador.
+Restrição legal: Uma vez que esteja completamente preenchida com todos os seus IV, uma NF deve ser validada (checa requisitos e calcula todos os impostos) e armazenada no subsistema BD:NF (Banco de Dados de NF), que também se encarrega de submeter na prefeitura.  Então, a NF deve passar para o estado “validada”, e deve ser então completamente imutavel. Nunca nenhum dado da NF inclusive de qualquer IV, deve ser modificado em uma NF validada. O BD:NF não deve aceitar nem validar nem gerar um ID para uma NF já validada, ou com dados inválidos. Se uma NF for corretamente validada, um objeto imutavel representando-a deve ser passado como resposta ao usuário-programador.
 
-todo: Requisito: Há um conjunto de varios impostos a serem aplicados em uma NF. Cada imposto possui uma aliquota default para produtos e serviços, e cada categoria tributária de P/S pode ter uma aliquota diferenciada.  O BD:P/S é mantido atualizado e confiamos nas aliquotas armazenadas.
+TODO: Requisito: Há um conjunto de varios impostos a serem aplicados em uma NF. Cada imposto possui uma aliquota default para produtos e serviços, e cada categoria tributária de P/S pode ter uma aliquota diferenciada.  O BD:P/S é mantido atualizado e confiamos nas aliquotas armazenadas.
 
-todo: Requisito: Deve ser fácil para o usuário-programador incluir um novo imposto. Deve haver uma interface padronizada para a programação de um novo imposto. Nos seus testes pode criar impostos simples, mas deve ser fácil programar a inclusao de qualquer novo imposto.  Um novo imposto pode envolver cálculos arbitrariamente complexos, mas sempre depende das quantidades, preços e categorias tributárias dos P/S. [DP Strategy, Command, Visitor .
+Requisito: Deve ser fácil para o usuário-programador incluir um novo imposto. Deve haver uma interface padronizada para a programação de um novo imposto. Nos seus testes pode criar impostos simples, mas deve ser fácil programar a inclusao de qualquer novo imposto.  Um novo imposto pode envolver cálculos arbitrariamente complexos, mas sempre depende das quantidades, preços e categorias tributárias dos P/S. [DP Strategy, Command, Visitor .
 
-todo: Inclusive um imposto pode depender da sequencia de IVs e/ou P/S anteriores ou posteriores na mesma NF, portando deve ser possível ao imposto manter estado durante o processamento de uma sequencia de IVs. [DP Strategy, Command, Visitor]
+Inclusive um imposto pode depender da sequencia de IVs e/ou P/S anteriores ou posteriores na mesma NF, portando deve ser possível ao imposto manter estado durante o processamento de uma sequencia de IVs. [DP Strategy, Command, Visitor]
 
-Restrição Legal: Cada NF validada deve ter um identificador único, gerado durante a validação, que nunca pode se repetir. Uma vez validada, esse ID deve aparecer em qualquer impressão.
+TODO: Restrição Legal: Cada NF validada deve ter um identificador único, gerado durante a validação, que nunca pode se repetir. Uma vez validada, esse ID deve aparecer em qualquer impressão.
 
-todo: Restrição legal: Nota fiscal deve estar associada a exatamente um cliente pré-cadastrado no BD:CLI (Banco de Dados de Clientes).
+NOT DO: Restrição legal: Nota fiscal deve estar associada a exatamente um cliente pré-cadastrado no BD:CLI (Banco de Dados de Clientes).
 
-todo: Requisito do product owner: deve ser facil de estender o sistema para especificar novas categorias de  produtos e servicos no futuro, que ainda deverão ser associadas a um item de venda. [Acoplamento Abstrato]
+Requisito do product owner: deve ser facil de estender o sistema para especificar novas categorias de  produtos e servicos no futuro, que ainda deverão ser associadas a um item de venda. [Acoplamento Abstrato]
 
-todo: Requisito do product owner: uma vez criada uma NF (antes da validação), os seus itens de venda devem ser modificados, adicionados ou deletados apenas pelos metodos apropriados. Deve-se cuidar que não haja acesso de escrita inapropriado a lista de itens por outros meios. [Acessor, ou seja, apenas cuidar do encapsulamento]
+Requisito do product owner: uma vez criada uma NF (antes da validação), os seus itens de venda devem ser modificados, adicionados ou deletados apenas pelos metodos apropriados. Deve-se cuidar que não haja acesso de escrita inapropriado a lista de itens por outros meios. [Acessor, ou seja, apenas cuidar do encapsulamento]
 
-todo: Requisito: Código de BD (mesmo que mockado), deve estar completamente separado, desacoplado do restante do sistema, e acessivel por uma API única, que é responsável por cadastros, buscas, submissões. Além disso, para simplificar logs, segurança, e desacoplamento, deve haver apenas um objeto (objeto, não classe) responsável por acessar o BD (isso representa uma restrição como “o seu aplicativo só pode fazer uma conexão com o BD”). [DP Façade ; Singleton]
+TODO: Requisito: Código de BD (mesmo que mockado), deve estar completamente separado, desacoplado do restante do sistema, e acessivel por uma API única, que é responsável por cadastros, buscas, submissões. Além disso, para simplificar logs, segurança, e desacoplamento, deve haver apenas um objeto (objeto, não classe) responsável por acessar o BD (isso representa uma restrição como “o seu aplicativo só pode fazer uma conexão com o BD”). [DP Façade ; Singleton]
 
-todo: Requisito: Código de calculo de impostos devem estar separados e desacoplados  de forma a poderem ser modificados sem afetar o resto do sistema. [Strategy]
+Requisito: Código de calculo de impostos devem estar separados e desacoplados  de forma a poderem ser modificados sem afetar o resto do sistema. [Strategy]
 
-todo: Requisito: Todas as entidades armazenados em BD devem corresponder a entidades imutáveis uma vez retirados do BD:  Clientes, P/S, NFs validadas. [Imutable Object]
+TODO: Requisito: Todas as entidades armazenados em BD devem corresponder a entidades imutáveis uma vez retirados do BD: P/S, NFs validadas. [Imutable Object]
 
-todo: Restrição legal: Cada produto ou serviço (P/S) pode ser subdividido em outros produtos e/ou serviços. A quantidade de subdivisões depende do P/S específico. Por exemplo, S-Pintura sempre tem “S-Mao de Obra” e “P-Tinta”. Não há limitação na profundidade das subdivisões. Por exemplo, uma subclasse de “S-Mao de Obra” pode permitir um subcontratado, e o subcontratado sub-subcontrata outro, etc. A NF deve listar todas as subdivisões inclusive todas as folhas do último nível [Composite e Visitor].
+Restrição legal: Cada produto ou serviço (P/S) pode ser subdividido em outros produtos e/ou serviços. A quantidade de subdivisões depende do P/S específico. Por exemplo, S-Pintura sempre tem “S-Mao de Obra” e “P-Tinta”. Não há limitação na profundidade das subdivisões. Por exemplo, uma subclasse de “S-Mao de Obra” pode permitir um subcontratado, e o subcontratado sub-subcontrata outro, etc. A NF deve listar todas as subdivisões inclusive todas as folhas do último nível [Composite e Visitor].
 
-todo: Restrição Legal: O cálculo de um imposto pode depender não apenas dos IV e P/S de uma nota fiscal, mas também do conjunto e valores de NFs anteriores ao longo do tempo. Isso deve ser representado no código pela utilização de dados anteriores adicionais como entrada extra para o cálculo de um imposto. Cada imposto portanto pode definir um tipo de dados (classe) apropriado para os seus próprios cálculos, arbitrariamente complicado. Neste trabalho basta criar um classe associada a um imposto, e fornecer um objeto preenchido com valores anteriores ao calcular o imposto de uma NF. Um exemplo simples: o objeto-entrada contem a soma dos valores do imposto pagos no mes em todas as NF, e à medida que a soma aumenta, a a?iquota para novas NF aumenta. Portanto o valor acumulado deve ser repassado em todos os calculos em cada NF. Note que não vale repassar só um float porque esse é um exemplo simples: a quantidade de dados e a complexidade dos cálculos poderiam ser muito maiores do que repassar e somar um valor.  [Data Object]
+TODO: Restrição Legal: O cálculo de um imposto pode depender não apenas dos IV e P/S de uma nota fiscal, mas também do conjunto e valores de NFs anteriores ao longo do tempo. Isso deve ser representado no código pela utilização de dados anteriores adicionais como entrada extra para o cálculo de um imposto. Cada imposto portanto pode definir um tipo de dados (classe) apropriado para os seus próprios cálculos, arbitrariamente complicado. Neste trabalho basta criar um classe associada a um imposto, e fornecer um objeto preenchido com valores anteriores ao calcular o imposto de uma NF. Um exemplo simples: o objeto-entrada contem a soma dos valores do imposto pagos no mes em todas as NF, e à medida que a soma aumenta, a a?iquota para novas NF aumenta. Portanto o valor acumulado deve ser repassado em todos os calculos em cada NF. Note que não vale repassar só um float porque esse é um exemplo simples: a quantidade de dados e a complexidade dos cálculos poderiam ser muito maiores do que repassar e somar um valor.  [Data Object]
 
-todo: Requisito Extra (entra no lugar do 12): incluir cliente, cpf, validador, não acrescentaria muito, então retirei. Mas suponha que a NF pode ter outras partes além de lista de IV e estado/ID, mesmo que nesse trabalho basta preencher um atributo “outros”. Basta deixar o codigo extensivel para facilitar incluir outras partes arbitrarias na NF. Por exemplo suponha que o próximo passo depois desse trabalho seria incluir um subsistema para gerar clientes e incluir os atributos e validações necessários na NF. Mostre porque a sua solução facilitaria isso. [trivial se usou um padrão criacional apropriado para os outros requisitos]
+TODO: (DEMO)Requisito Extra (entra no lugar do 12): incluir cliente, cpf, validador, não acrescentaria muito, então retirei. Mas suponha que a NF pode ter outras partes além de lista de IV e estado/ID, mesmo que nesse trabalho basta preencher um atributo “outros”. Basta deixar o codigo extensivel para facilitar incluir outras partes arbitrarias na NF. Por exemplo suponha que o próximo passo depois desse trabalho seria incluir um subsistema para gerar clientes e incluir os atributos e validações necessários na NF. Mostre porque a sua solução facilitaria isso. [trivial se usou um padrão criacional apropriado para os outros requisitos]

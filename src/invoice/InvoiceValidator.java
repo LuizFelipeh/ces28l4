@@ -7,7 +7,7 @@ import taxes.Tax;
  */
 class InvoiceValidator {
     private java.util.List<Tax> _taxes;
-    private InvoiceDatabase _database;
+    private InvoiceDatabaseSaver _database;
 
     public boolean validate(Invoice invoice) {
         return false;
