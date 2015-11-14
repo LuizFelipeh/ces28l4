@@ -9,6 +9,4 @@ import java.util.List;
  */
 public interface InvoiceDatabaseSaver {
     long save(Invoice invoice);
-
-    List<TaxHistoryObject> getHistory();
 }
