@@ -11,7 +11,7 @@ public abstract class Sellable {
     private SellableInfo _sellableInfo;
     private Map<Sellable, Float> _components;
 
-    public Sellable(SellableInfo sellableInfo) {
+    Sellable(SellableInfo sellableInfo) {
         _sellableInfo = sellableInfo;
     }
 
