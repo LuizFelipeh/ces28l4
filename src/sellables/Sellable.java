@@ -2,6 +2,7 @@ package sellables;
 
 import taxes.TributaryCategory;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,7 +13,9 @@ public abstract class Sellable {
     private Map<Sellable, Float> _components;
 
     Sellable(SellableInfo sellableInfo) {
+
         _sellableInfo = sellableInfo;
+        _components = new HashMap<Sellable, Float>();
     }
 
 
@@ -23,6 +26,10 @@ public abstract class Sellable {
             totalPrice += component.getPrice() * entry.getValue();
         }
         return totalPrice;
+    }
+
+    public String getName() {
+        return _sellableInfo.getName();
     }
 
     void addComponent(Sellable sellable, float quantity) {
