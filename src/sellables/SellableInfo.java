@@ -13,7 +13,7 @@ public class SellableInfo {
     private final float _price;
     private final String _name;
     private final SellableClass _sellableClass;
-    private final Map<Integer, Float> _componentIds;
+    private final Map<Integer, Float> _componentIdsMap;
 
     public SellableInfo(long id, TributaryCategory tributaryCategory, float price, String name, SellableClass sellableClass) {
         _id = id;
@@ -21,7 +21,7 @@ public class SellableInfo {
         _price = price;
         _name = name;
         _sellableClass = sellableClass;
-        _componentIds = null;
+        _componentIdsMap = null;
     }
 
     public SellableInfo(long id, TributaryCategory tributaryCategory, float price, String name, SellableClass sellableClass, Map<Integer, Float> componentIds) {
@@ -30,7 +30,7 @@ public class SellableInfo {
         _price = price;
         _name = name;
         _sellableClass = sellableClass;
-        _componentIds = componentIds;
+        _componentIdsMap = componentIds;
     }
 
     SellableClass getSellableClass() { return _sellableClass; }
@@ -47,9 +47,9 @@ public class SellableInfo {
         return _name;
     }
 
-    long getId() {
+    public long getId() {
         return _id;
     }
 
-    Map<Integer, Float> getComponentIds() { return _componentIds; }
+    Map<Integer, Float> getComponentIds() { return _componentIdsMap; }
 }

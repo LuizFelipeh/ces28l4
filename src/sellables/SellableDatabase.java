@@ -5,4 +5,5 @@ package sellables;
  */
 public interface SellableDatabase {
     SellableInfo getByID(long id);
+    void save(SellableInfo info);
 }

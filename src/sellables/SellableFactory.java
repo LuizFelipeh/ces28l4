@@ -1,12 +1,14 @@
 package sellables;
 
+import databases.SellableDBLocator;
+
 import java.util.Map;
 
 /**
  * Created by Felipeh on 11/11/2015.
  */
 public class SellableFactory {
-    private SellableDatabase _database;
+    private SellableDatabase _database = SellableDBLocator.find();
 
     public Sellable create(long id) throws ClassNotFoundException{
         SellableInfo info = _database.getByID(id);

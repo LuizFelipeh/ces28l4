@@ -17,17 +17,17 @@ public abstract class Sellable {
 
 
     public float getPrice() {
-
-        return _sellableInfo.getPrice();
+        float totalPrice = _sellableInfo.getPrice();
+        for (Map.Entry<Sellable, Float> entry : _components.entrySet()){
+            Sellable component = entry.getKey();
+            totalPrice += component.getPrice() * entry.getValue();
+        }
+        return totalPrice;
     }
 
-    public void addComponent(Sellable sellable, float quantity) {
+    void addComponent(Sellable sellable, float quantity) {
         Float oldValue = _components.get(sellable);
         _components.put(sellable, oldValue == null ? quantity : oldValue + quantity);
-    }
-
-    public void removeComponent(Sellable sellable) {
-        _components.remove(sellable);
     }
 
     @Override
