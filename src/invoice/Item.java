@@ -15,17 +15,17 @@ public class Item implements Taxable {
 
     @Override
     public float getQuantity() {
-        return 0f;
+        return _info.getQuantity();
     }
 
     @Override
     public float getPrice() {
-        return 0;
+        return _info.getQuantity() * _info.getPrice();
     }
 
     @Override
     public TributaryCategory getCategory() {
-        return null;
+        return _info.getTributaryCategory();
     }
 
 }
