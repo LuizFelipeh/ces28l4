@@ -4,10 +4,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import taxes.Taxable;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by Felipeh on 11/11/2015.
@@ -30,7 +27,7 @@ public class Invoice {
         _state.addItem(_items, itemInfo);
     }
 
-    public long validate() throws InvalidInvoiceException {
+    public long validate() throws InvalidInvoiceException, ImmutableObjectException {
         _id = _state.validate(_validator, this);
         _state = new ClosedInvoiceState();
         return _id;
@@ -49,14 +46,51 @@ public class Invoice {
     }
 
     public String toString() {
-        throw new NotImplementedException();
+        StringBuilder sb = new StringBuilder();
+        for (Item item : _items) {
+            sb.append(item.toString());
+        }
+        sb.append("    |  " + "Partial Value         |  " + "$" + String.format("%.2f", getTotal()) + "\n");
+
+        sb.append("\nTaxes:\n");
+        for (Map.Entry<String, Float> entry : _taxations.entrySet()) {
+            sb.append(String.format("%20s", entry.getKey()));
+            sb.append(" |  ");
+            sb.append(String.format("%$.2fs", entry.getValue()));
+        }
+
+        float taxation;
+        try {
+             taxation = getTaxation();
+            sb.append("    |  " + "Tax     Value         |  " + "$" + String.format("%.2f", taxation) + "\n");
+
+            sb.append("    |  " + "Total   Value         |  " + "$" + String.format("%.2f", getTotal() + taxation) + "\n");
+        } catch (InvalidInvoiceException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return sb.toString();
     }
 
-    public void modifyItem(int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException {
-        _state.modifyItem(_items, index, itemInfo);
+    public void modifyItemQuantity(int index, float newQuantity) throws InvalidParameterException, ImmutableObjectException {
+        _state.modifyItemQuantity(_items, index, newQuantity);
     }
 
     public void removeItem(int index) throws InvalidParameterException, ImmutableObjectException {
         _state.removeItem(_items, index);
     }
+
+    public float getTotal() {
+        float total = 0;
+        for (Item item : _items) {
+            total += item.getPrice();
+        }
+        return total;
+    }
+
+    public float getTaxation() throws InvalidInvoiceException {
+        return _state.getTaxation(_taxations);
+    }
+
 }

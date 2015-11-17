@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Felipeh on 11/11/2015.
  */
-class ItemInfo {
+public class ItemInfo {
     private Sellable _sellable;
     private float _quantity;
 
@@ -29,7 +29,15 @@ class ItemInfo {
         return _sellable.getPrice();
     }
 
+    public String getName() { return _sellable.getName(); }
+
+    public long getId() { return _sellable.getId(); }
+
     public TributaryCategory getTributaryCategory() {
         return _sellable.getTributaryCategory();
+    }
+
+    public void setQuantity(float quantity) {
+        this._quantity = quantity;
     }
 }

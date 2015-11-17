@@ -21,4 +21,8 @@ public class MockInvoiceDatabase implements InvoiceDatabaseHistory, InvoiceDatab
     public long save(Invoice invoice) {
         throw new NotImplementedException();
     }
+
+    public static MockInvoiceDatabase getInstance() {
+        return null;
+    }
 }

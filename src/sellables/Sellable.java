@@ -66,6 +66,10 @@ public abstract class Sellable {
         return _sellableInfo.getName();
     }
 
+    public long getId() {
+        return _sellableInfo.getId();
+    }
+
     void addComponent(Sellable sellable, float quantity) {
         Float oldValue = _components.get(sellable);
         _components.put(sellable, oldValue == null ? quantity : oldValue + quantity);

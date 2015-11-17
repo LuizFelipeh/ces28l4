@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Felipeh on 11/11/2015.
  */
-class InvoiceValidator {
+public class InvoiceValidator {
     private List<Tax> _taxes;
     private InvoiceDatabaseSaver _databaseSaver;
     private InvoiceDatabaseHistory _databaseHistory;
@@ -35,4 +35,5 @@ class InvoiceValidator {
     public void addTaxes(Tax... taxes) {
         _taxes.addAll(Arrays.asList(taxes));
     }
+
 }

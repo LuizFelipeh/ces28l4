@@ -20,7 +20,7 @@ public class SellableDemo {
 
         SellableDatabase database = MockSellableDB.getInstance();
         SellableFactory factory =  new SellableFactory(database);
-        HelperMethods.CreateDemoSellableDB(database);
+        HelperMethods.populateDemoSellableDB(database);
 
         // We know some IDs from our Sellable DB so we will be getting some of ther
         Sellable steak = factory.create(10);

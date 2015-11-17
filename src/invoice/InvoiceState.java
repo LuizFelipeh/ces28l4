@@ -9,13 +9,15 @@ import java.util.Map;
  */
 interface InvoiceState {
 
-    long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException;
+    long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException, ImmutableObjectException;
 
     void addItem(List<Item> itemList, ItemInfo... itemInfo) throws ImmutableObjectException;
 
-    void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException;
+    void modifyItemQuantity(List<Item> itemList, int index, float newQuantity) throws InvalidParameterException, ImmutableObjectException;
 
     void removeItem(List<Item> itemList, int index) throws InvalidParameterException, ImmutableObjectException;
 
     void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) throws ImmutableObjectException;
+
+    float getTaxation(Map<String, Float> taxations) throws InvalidInvoiceException;
 }

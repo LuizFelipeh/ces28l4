@@ -21,7 +21,7 @@ class ClosedInvoiceState implements InvoiceState {
 
 
     @Override
-    public void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException {
+    public void modifyItemQuantity(List<Item> itemList, int index, float newQuantity) throws InvalidParameterException, ImmutableObjectException {
         throw new ImmutableObjectException();
     }
 
@@ -33,5 +33,14 @@ class ClosedInvoiceState implements InvoiceState {
     @Override
     public void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) throws ImmutableObjectException {
         throw new ImmutableObjectException();
+    }
+
+    @Override
+    public float getTaxation(Map<String, Float> taxations) {
+        float taxation = 0;
+        for (Map.Entry<String, Float> entry : taxations.entrySet()) {
+            taxation += entry.getValue();
+        }
+        return  taxation;
     }
 }
