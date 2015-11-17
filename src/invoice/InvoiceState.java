@@ -1,7 +1,5 @@
 package invoice;
 
-import taxes.TaxData;
-
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +9,13 @@ import java.util.Map;
  */
 interface InvoiceState {
 
-    boolean validate(TaxData taxData, InvoiceValidator invoiceValidator);
+    long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException;
 
-    void addItem(List<Item> itemList, ItemInfo... iteminfo);
+    void addItem(List<Item> itemList, ItemInfo... itemInfo) throws ImmutableObjectException;
 
-    void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException;
+    void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException;
 
-    void removeItem(List<Item> itemList, int index) throws InvalidParameterException;
+    void removeItem(List<Item> itemList, int index) throws InvalidParameterException, ImmutableObjectException;
 
-    void applyTax(Map<String, Float> taxations, String taxName, float taxPrice);
+    void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) throws ImmutableObjectException;
 }

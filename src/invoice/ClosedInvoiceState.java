@@ -1,7 +1,5 @@
 package invoice;
 
-import taxes.TaxData;
-
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Map;
@@ -12,28 +10,28 @@ import java.util.Map;
 class ClosedInvoiceState implements InvoiceState {
 
     @Override
-    public boolean validate(TaxData taxData, InvoiceValidator invoiceValidator) {
-        return false;
+    public long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException {
+        throw new InvalidInvoiceException("ID already exists");
     }
 
     @Override
-    public void addItem(List<Item> itemList, ItemInfo... iteminfo) {
-        return;
+    public void addItem(List<Item> itemList, ItemInfo... iteminfo) throws ImmutableObjectException {
+        throw new ImmutableObjectException();
     }
 
 
     @Override
-    public void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException {
-        return;
+    public void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException {
+        throw new ImmutableObjectException();
     }
 
     @Override
-    public void removeItem(List<Item> itemList, int index) throws InvalidParameterException {
-        return;
+    public void removeItem(List<Item> itemList, int index) throws InvalidParameterException, ImmutableObjectException {
+        throw new ImmutableObjectException();
     }
 
     @Override
-    public void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) {
-        return;
+    public void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) throws ImmutableObjectException {
+        throw new ImmutableObjectException();
     }
 }

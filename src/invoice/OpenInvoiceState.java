@@ -1,7 +1,5 @@
 package invoice;
 
-import taxes.TaxData;
-
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +10,9 @@ import java.util.Map;
 class OpenInvoiceState implements InvoiceState {
 
     @Override
-    public boolean validate(TaxData taxData, InvoiceValidator invoiceValidator) {
-        boolean validationOK = invoiceValidator.validate(taxData);
+    public long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException {
+        long id = invoiceValidator.validate(invoice);
+        return id;
     }
 
     @Override

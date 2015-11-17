@@ -3,6 +3,8 @@ package invoice;
 import sellables.Sellable;
 import taxes.TributaryCategory;
 
+import java.util.Map;
+
 /**
  * Created by Felipeh on 11/11/2015.
  */
@@ -13,6 +15,10 @@ public class ItemInfo {
     public ItemInfo(Sellable sellable, float quantity) {
         _sellable = sellable;
         _quantity = quantity;
+    }
+
+    public Map<Sellable, Float> getChildComponents() {
+        return _sellable.getChildComponents();
     }
 
     public float getQuantity() {
