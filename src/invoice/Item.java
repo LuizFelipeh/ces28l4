@@ -1,8 +1,13 @@
 package invoice;
 
 
+import sellables.Sellable;
 import taxes.Taxable;
 import taxes.TributaryCategory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Felipeh on 11/11/2015.
@@ -28,4 +33,14 @@ public class Item implements Taxable {
         return _info.getTributaryCategory();
     }
 
+    public List<Taxable> getAll() {
+        List<Taxable> result = new ArrayList<>();
+        Map<Sellable, Float> children = _info.getChildComponents();
+        for (Map.Entry<Sellable, Float> entry : children.entrySet()) {
+            ItemInfo info = new ItemInfo(entry.getKey(), entry.getValue());
+            Item item = new Item(info);
+            result.add(item);
+        }
+        return result;
+    }
 }

@@ -2,16 +2,20 @@ package invoice;
 
 import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Felipeh on 11/11/2015.
  */
-public interface InvoiceState {
-    void addItem(List<Item> itemList, ItemInfo... iteminfo);
+interface InvoiceState {
 
-    void validate(Invoice invoice);
+    long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException;
 
-    void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException;
+    void addItem(List<Item> itemList, ItemInfo... itemInfo) throws ImmutableObjectException;
 
-    void removeItem(List<Item> itemList, int index) throws InvalidParameterException;
+    void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException, ImmutableObjectException;
+
+    void removeItem(List<Item> itemList, int index) throws InvalidParameterException, ImmutableObjectException;
+
+    void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) throws ImmutableObjectException;
 }
