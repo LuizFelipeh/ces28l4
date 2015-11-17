@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Felipeh on 11/11/2015.
  */
-public class ItemInfo {
+class ItemInfo {
     private Sellable _sellable;
     private float _quantity;
 

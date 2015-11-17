@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by Felipeh on 11/11/2015.
  */
-public class SellableInfo {
+class SellableInfo {
     private final long _id;
     private final TributaryCategory _tributaryCategory;
     private final float _price;
