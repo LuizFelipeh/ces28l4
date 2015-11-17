@@ -6,6 +6,7 @@ import sellables.Sellable;
 import sellables.SellableDatabase;
 import sellables.SellableFactory;
 
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 
@@ -37,6 +38,9 @@ public class SellableDemo {
         Sellable playstation = factory.create(30);
         System.out.println(playstation.getName() + ": " + playstation.getPrice() + " reais");
 
+        Sellable partyPizzaDelivery = factory.create(1002);
+        System.out.println(partyPizzaDelivery.getName() + ": " + partyPizzaDelivery.getPrice() + " reais");
+
         // Although it is not supposed to bew in the scope of this demo, we will also show that the DB throws an exeption
         // for invalid ID
 
@@ -45,10 +49,18 @@ public class SellableDemo {
         }
         catch (NoSuchElementException e)
         {
-            System.out.print("Seu banco de dados funcionando direito: Nao tem preco");
+            System.out.println("Seu banco de dados funcionando direito: Nao tem preco");
         }
 
 
+        System.out.println();
+        System.out.println("Componentes da Party Pizza Delivery:");
+        for (Map.Entry<Sellable, Float> childComponent : partyPizzaDelivery.getChildComponents().entrySet())
+        {
+            Sellable childComponentSellable = childComponent.getKey();
+            float childComponentQuant = childComponent.getValue();
+            System.out.println(childComponentSellable.getName() + ": " + childComponentQuant + " itens. Preco atribuido: " + childComponentSellable.getPrice() * childComponentQuant);
+        }
     }
 
 

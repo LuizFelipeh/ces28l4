@@ -15,7 +15,7 @@ public abstract class Sellable {
     Sellable(SellableInfo sellableInfo) {
 
         _sellableInfo = sellableInfo;
-        _components = new HashMap<Sellable, Float>();
+        _components = new HashMap<>();
     }
 
 
@@ -26,6 +26,40 @@ public abstract class Sellable {
             totalPrice += component.getPrice() * entry.getValue();
         }
         return totalPrice;
+    }
+
+    public Map<Sellable, Float> getChildComponents()
+    {
+        Map<Sellable, Float> retDict = new HashMap<>();
+        for (Map.Entry<Sellable, Float> component : _components.entrySet())
+        {
+            Sellable componentSellable = component.getKey();
+            Float componentQuant = component.getValue();
+
+            // In case it is not a composite
+            if(!componentSellable.isComposite())
+            {
+                Float oldValue = retDict.get(componentSellable);
+                retDict.put(componentSellable, oldValue == null ? componentQuant : oldValue + componentQuant);
+                continue;
+            }
+
+            // In case it is
+            Map<Sellable, Float> childComponents = componentSellable.getChildComponents();;
+            for (Map.Entry<Sellable, Float> childComponent : childComponents.entrySet())
+            {
+                Sellable childComponentSellable = childComponent.getKey();
+                float childComponentQuant = childComponent.getValue() * componentQuant;
+                Float oldValue = retDict.get(childComponentSellable);
+                retDict.put(childComponentSellable, oldValue == null ? childComponentQuant : oldValue + childComponentQuant);
+            }
+        }
+        return retDict;
+    }
+
+    private boolean isComposite()
+    {
+        return !_components.isEmpty();
     }
 
     public String getName() {
@@ -42,6 +76,12 @@ public abstract class Sellable {
     {
         if(other.getClass() != getClass()) return false;
         return ((Sellable) other)._sellableInfo.getId() == _sellableInfo.getId();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return (int) _sellableInfo.getId();
     }
 
     public TributaryCategory getTributaryCategory() {

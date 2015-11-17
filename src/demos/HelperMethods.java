@@ -32,6 +32,21 @@ public class HelperMethods {
 
         database.save(new SellableInfo(1000, TributaryCategory.service, 0, "One Large Pizza Delivery", SellableClass.service, pizzaDeliveryMap));
 
+        // Creating a superb pizza delivery
+        pizzaDeliveryMap = new HashMap<Integer, Float>();
+        pizzaDeliveryMap.put(11, 5.0f);
+        pizzaDeliveryMap.put(90, 1.0f);
+
+        database.save(new SellableInfo(1001, TributaryCategory.service, 0, "Five Large Pizzas Delivery", SellableClass.service, pizzaDeliveryMap));
+
+        pizzaDeliveryMap = new HashMap<Integer, Float>();
+        pizzaDeliveryMap.put(1000, 5.0f);
+        pizzaDeliveryMap.put(1001, 2.0f);
+
+        database.save(new SellableInfo(1002, TributaryCategory.service, 0, "Party Pizza Delivery", SellableClass.service, pizzaDeliveryMap));
+
+
+
         //Adding a composite info (painting will have a base price plus the paint price plus the painters service price)
         int paintProductID = 70;
         int painterServiceID = 91;
@@ -42,6 +57,6 @@ public class HelperMethods {
         paintingServiceMap.put(painterServiceID, 1.0f);
         paintingServiceMap.put(paintProductID, 2.5f);
 
-        database.save(new SellableInfo(1001, TributaryCategory.service, 40, "Painting", SellableClass.service, paintingServiceMap));
+        database.save(new SellableInfo(2001, TributaryCategory.service, 40, "Painting", SellableClass.service, paintingServiceMap));
     }
 }
