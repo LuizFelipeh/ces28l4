@@ -27,12 +27,11 @@ public class Tax {
 
     public float calculate(TaxData taxData) {
         float taxValue = 0;
-        for (TaxRule rule:_rules){
+       for (TaxRule rule:_rules){
             taxValue += rule.calculate(taxData);
         }
 
         if(_usingDefault) taxValue += defaultTaxRule.calculate(taxData);
-
         return taxValue;
     }
 

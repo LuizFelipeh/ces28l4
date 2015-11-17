@@ -40,4 +40,8 @@ public class ItemInfo {
     public void setQuantity(float quantity) {
         this._quantity = quantity;
     }
+
+    public Sellable getSellable() {
+        return _sellable;
+    }
 }

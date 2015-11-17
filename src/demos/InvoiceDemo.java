@@ -26,21 +26,22 @@ public class InvoiceDemo {
         validator.addTaxes(demoTax);
 
         // first Invoice
-        Sellable steak, coke, water;
+        Sellable steak, coke, water, partypizza;
         try {
             steak = sellableFactory.create(10);
             coke = sellableFactory.create(70);
             water = sellableFactory.create(71);
+            partypizza = sellableFactory.create(1002);
         }
         catch (ClassNotFoundException e) {
             System.out.println("Some products were not found");
             throw e;
         }
 
-        Invoice invoice = new Invoice(validator, new ItemInfo(steak, 2), new ItemInfo(coke, 2));
+        Invoice invoice = new Invoice(validator, new ItemInfo(steak, 2), new ItemInfo(coke, 2), new ItemInfo(partypizza, 1));
         invoice.addItem(new ItemInfo(water, 1));
 
-        invoice.modifyItemQuantity(1, 2);
+        invoice.modifyItemQuantity(1, 3);
 
         try {
             invoice.validate();

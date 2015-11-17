@@ -38,7 +38,7 @@ public class Item implements Taxable {
         List<Taxable> result = new ArrayList<>();
         Map<Sellable, Float> children = _info.getChildComponents();
         for (Map.Entry<Sellable, Float> entry : children.entrySet()) {
-            ItemInfo info = new ItemInfo(entry.getKey(), entry.getValue());
+            ItemInfo info = new ItemInfo(entry.getKey(), _info.getQuantity()*entry.getValue());
             Item item = new Item(info);
             result.add(item);
         }

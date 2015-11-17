@@ -31,6 +31,9 @@ public abstract class Sellable {
     public Map<Sellable, Float> getChildComponents()
     {
         Map<Sellable, Float> retDict = new HashMap<>();
+        if(!isComposite()){
+            retDict.put(this, 1f);
+        }
         for (Map.Entry<Sellable, Float> component : _components.entrySet())
         {
             Sellable componentSellable = component.getKey();

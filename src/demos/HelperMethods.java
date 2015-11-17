@@ -4,11 +4,9 @@ import sellables.SellableClass;
 import sellables.SellableDatabase;
 import sellables.SellableInfo;
 import taxes.Tax;
-import taxes.TaxRule;
 import taxes.TributaryCategory;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,13 +69,13 @@ public class HelperMethods {
         Tax retTax = new Tax("Imposto Governo Malvado 1");
         System.out.println("Creating Tax");
 
-        FoodTax foodTax = new FoodTax();
+        FoodTaxRule foodTax = new FoodTaxRule();
         retTax.addRule(foodTax);
-        System.out.println("Creating FoodTax and adding to the rules");
+        System.out.println("Creating FoodTaxRule and adding to the rules");
 
-        ServiceTax serviceTax = new ServiceTax();
+        ServiceTaxRule serviceTax = new ServiceTaxRule();
         retTax.addRule(serviceTax);
-        System.out.println("Creating ServiceTax and adding to the rules");
+        System.out.println("Creating ServiceTaxRule and adding to the rules");
 
 
         //for(TaxRule taxRule : taxRuleList){
