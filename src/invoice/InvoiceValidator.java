@@ -2,7 +2,9 @@ package invoice;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import taxes.Tax;
+import taxes.TaxData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,8 +15,9 @@ class InvoiceValidator {
     private List<Tax> _taxes;
     private InvoiceDatabaseSaver _database;
 
-    public boolean validate(Invoice invoice) {
-        // TODO: BIG IMPLEMENTATION --> InvoiceDatabase
+    public boolean validate(TaxData taxData) {
+
+
         throw new NotImplementedException();
     }
 
