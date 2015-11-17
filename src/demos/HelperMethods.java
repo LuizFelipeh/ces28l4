@@ -3,9 +3,12 @@ package demos;
 import sellables.SellableClass;
 import sellables.SellableDatabase;
 import sellables.SellableInfo;
+import taxes.Tax;
+import taxes.TaxRule;
 import taxes.TributaryCategory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -58,5 +61,27 @@ public class HelperMethods {
         paintingServiceMap.put(paintProductID, 2.5f);
 
         database.save(new SellableInfo(2001, TributaryCategory.service, 40, "Painting", SellableClass.service, paintingServiceMap));
+
+
+    }
+
+    static Tax CreateDemoTax (){
+        Tax retTax = new Tax("Imposto Governo Malvado 1");
+        System.out.println("Creating Tax");
+
+        FoodTax foodTax = new FoodTax();
+        retTax.addRule(foodTax);
+        System.out.println("Creating FoodTax and adding to the rules");
+
+        ServiceTax serviceTax = new ServiceTax();
+        retTax.addRule(serviceTax);
+        System.out.println("Creating ServiceTax and adding to the rules");
+
+
+        //for(TaxRule taxRule : taxRuleList){
+        //    retTax.addRule(taxRule);
+        //}
+
+        return retTax;
     }
 }

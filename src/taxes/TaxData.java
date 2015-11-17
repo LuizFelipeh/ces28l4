@@ -19,5 +19,6 @@ public class TaxData {
 
     public TaxData(List<Taxable> invoiceTaxableList, List<TaxHistoryObject> taxHistoryList){
         _taxableList = invoiceTaxableList;
+        _taxHistory = taxHistoryList;
     }
 }
