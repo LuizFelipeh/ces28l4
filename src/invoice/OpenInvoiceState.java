@@ -10,7 +10,7 @@ import java.util.Map;
 class OpenInvoiceState implements InvoiceState {
 
     @Override
-    public long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException {
+    public long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException, ImmutableObjectException {
         long id = invoiceValidator.validate(invoice);
         return id;
     }
@@ -24,10 +24,10 @@ class OpenInvoiceState implements InvoiceState {
     }
 
     @Override
-    public void modifyItem(List<Item> itemList, int index, ItemInfo itemInfo) throws InvalidParameterException {
+    public void modifyItemQuantity(List<Item> itemList, int index, float newQuantity) throws InvalidParameterException {
         checkIndex(itemList, index);
-        Item item = new Item(itemInfo);
-        itemList.set(index, item);
+        Item item = itemList.get(index);
+        item.setQuantity(newQuantity);
     }
 
     @Override
@@ -44,5 +44,10 @@ class OpenInvoiceState implements InvoiceState {
     @Override
     public void applyTax(Map<String, Float> taxations, String taxName, float taxPrice) {
         taxations.put(taxName, taxPrice);
+    }
+
+    @Override
+    public float getTaxation(Map<String, Float> taxations) throws InvalidInvoiceException {
+        throw new InvalidInvoiceException("Invoice was not taxed yet!");
     }
 }

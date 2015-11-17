@@ -29,7 +29,15 @@ public class ItemInfo {
         return _sellable.getPrice();
     }
 
+    public String getName() { return _sellable.getName(); }
+
+    public long getId() { return _sellable.getId(); }
+
     public TributaryCategory getTributaryCategory() {
         return _sellable.getTributaryCategory();
+    }
+
+    public void setQuantity(float quantity) {
+        this._quantity = quantity;
     }
 }

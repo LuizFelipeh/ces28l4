@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class HelperMethods {
 
-    static void CreateDemoSellableDB(SellableDatabase database) {
+    static void populateDemoSellableDB(SellableDatabase database) {
         //Add some info to DB
         database.save( new SellableInfo(10, TributaryCategory.food, 50, "Steak", SellableClass.product));
         database.save( new SellableInfo(11, TributaryCategory.food, 20, "Large Pizza", SellableClass.product));
@@ -26,6 +26,8 @@ public class HelperMethods {
         database.save( new SellableInfo(40, TributaryCategory.automobiles, 50000, "Toyota", SellableClass.product));
         database.save( new SellableInfo(50, TributaryCategory.clothes, 120, "Casaco Quicksilver", SellableClass.product));
         database.save( new SellableInfo(60, TributaryCategory.medicines, 20, "Tylenol 100mg", SellableClass.product));
+        database.save( new SellableInfo(70, TributaryCategory.beverage, 6, "Coca Cola", SellableClass.product));
+        database.save( new SellableInfo(71, TributaryCategory.beverage, 3, "Water", SellableClass.product));
         database.save( new SellableInfo(90, TributaryCategory.service, 5, "Delivery", SellableClass.service));
 
         //Adding a composite info with 0 base price and composition of other 2

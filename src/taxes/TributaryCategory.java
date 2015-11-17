@@ -11,5 +11,5 @@ public enum TributaryCategory {
     clothes,
     medicines,
     service,
-    household,
+    household, beverage,
 }

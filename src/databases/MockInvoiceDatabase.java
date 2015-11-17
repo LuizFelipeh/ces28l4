@@ -37,4 +37,8 @@ public class MockInvoiceDatabase implements InvoiceDatabaseHistory, InvoiceDatab
         taxHistory.add(taxHistoryObject);
         return _currentID;
     }
+
+    public static MockInvoiceDatabase getInstance() {
+        return null;
+    }
 }

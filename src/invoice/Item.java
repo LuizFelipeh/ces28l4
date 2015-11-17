@@ -16,6 +16,7 @@ public class Item implements Taxable {
     private ItemInfo _info;
 
     public Item(ItemInfo itemInfo) {
+        _info = itemInfo;
     }
 
     @Override
@@ -43,4 +44,13 @@ public class Item implements Taxable {
         }
         return result;
     }
+
+    public String toString() {
+        return _info.getId() + "  |  " + String.format("%20s", _info.getName()) + "  |  " + "$" + String.format("%.2f", getPrice()) + "\n";
+    }
+
+    public void setQuantity(float newQuantity) {
+        _info.setQuantity(newQuantity);
+    }
+
 }
