@@ -1,6 +1,7 @@
 package taxes;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class Tax {
     {
         defaultTaxRule = new DefaultTaxRule();
         _taxName = name;
+        _rules = new ArrayList<>();
     }
 
 

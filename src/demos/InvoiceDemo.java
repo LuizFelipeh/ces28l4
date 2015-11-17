@@ -22,8 +22,8 @@ public class InvoiceDemo {
         InvoiceValidator validator = new InvoiceValidator(invoiceDatabase, invoiceDatabase);
 
         // add taxes to validator
-        List<Tax> taxes = HelperMethods.getDemoTaxes();
-        validator.addTaxes((Tax[]) taxes.toArray());
+        Tax demoTax = HelperMethods.createDemoTax();
+        validator.addTaxes(demoTax);
 
         // first Invoice
         Sellable steak, coke, water;

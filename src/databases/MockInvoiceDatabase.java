@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class MockInvoiceDatabase implements InvoiceDatabaseHistory, InvoiceDatabaseSaver {
     private long _currentID = 0;
-    List<TaxHistoryObject> taxHistory = new ArrayList<TaxHistoryObject>();
+    List<TaxHistoryObject> taxHistory = new ArrayList<>();
 
 
     private static MockInvoiceDatabase _instance = new MockInvoiceDatabase();
@@ -28,13 +28,13 @@ public class MockInvoiceDatabase implements InvoiceDatabaseHistory, InvoiceDatab
 
     @Override
     public List<TaxHistoryObject> getHistory() {
-        throw new NotImplementedException();
+        return taxHistory;
     }
 
     @Override
     public long save(Invoice invoice) {
         _currentID ++;
-        TaxHistoryObject taxHistoryObject = null;
+        TaxHistoryObject taxHistoryObject;
         try {
             taxHistoryObject = new TaxHistoryObject(invoice.getTotal(), new Date(), invoice.getTaxation());
         } catch (InvalidInvoiceException e) {

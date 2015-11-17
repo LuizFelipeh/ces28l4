@@ -20,6 +20,7 @@ public class Invoice {
         _state = new OpenInvoiceState();
         _items = new ArrayList<>();
         _taxations = new TreeMap<>();
+        _validator = validator;
         addItem(itemInfos);
     }
 
@@ -50,21 +51,21 @@ public class Invoice {
         for (Item item : _items) {
             sb.append(item.toString());
         }
-        sb.append("    |  " + "Partial Value         |  " + "$" + String.format("%.2f", getTotal()) + "\n");
+        sb.append("    |  " + "       Partial Value  |  " + "$").append(String.format("%.2f", getTotal())).append("\n");
 
         sb.append("\nTaxes:\n");
         for (Map.Entry<String, Float> entry : _taxations.entrySet()) {
-            sb.append(String.format("%20s", entry.getKey()));
+            sb.append(String.format("   %20s", entry.getKey()));
             sb.append(" |  ");
-            sb.append(String.format("%$.2fs", entry.getValue()));
+            sb.append(String.format("$%.2f\n", entry.getValue()));
         }
 
         float taxation;
         try {
              taxation = getTaxation();
-            sb.append("    |  " + "Tax     Value         |  " + "$" + String.format("%.2f", taxation) + "\n");
+            sb.append("    |  " + "           Tax Value  |  " + "$").append(String.format("%.2f", taxation)).append("\n");
 
-            sb.append("    |  " + "Total   Value         |  " + "$" + String.format("%.2f", getTotal() + taxation) + "\n");
+            sb.append("    |  " + "         Total Value  |  " + "$").append(String.format("%.2f", getTotal() + taxation)).append("\n");
         } catch (InvalidInvoiceException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

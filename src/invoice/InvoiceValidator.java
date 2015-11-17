@@ -5,6 +5,7 @@ import taxes.TaxData;
 import taxes.TaxHistoryObject;
 import taxes.Taxable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class InvoiceValidator {
     public InvoiceValidator(InvoiceDatabaseSaver _databaseSaver, InvoiceDatabaseHistory _databaseHistory) {
         this._databaseHistory = _databaseHistory;
         this._databaseSaver = _databaseSaver;
+        _taxes = new ArrayList<>();
     }
 
     public long validate(Invoice invoice) throws InvalidInvoiceException, ImmutableObjectException {

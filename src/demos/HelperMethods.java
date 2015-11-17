@@ -31,20 +31,20 @@ public class HelperMethods {
         database.save( new SellableInfo(90, TributaryCategory.service, 5, "Delivery", SellableClass.service));
 
         //Adding a composite info with 0 base price and composition of other 2
-        Map<Integer, Float> pizzaDeliveryMap = new HashMap<Integer, Float>();
+        Map<Integer, Float> pizzaDeliveryMap = new HashMap<>();
         pizzaDeliveryMap.put(11, 1.0f);
         pizzaDeliveryMap.put(90, 1.0f);
 
         database.save(new SellableInfo(1000, TributaryCategory.service, 0, "One Large Pizza Delivery", SellableClass.service, pizzaDeliveryMap));
 
         // Creating a superb pizza delivery
-        pizzaDeliveryMap = new HashMap<Integer, Float>();
+        pizzaDeliveryMap = new HashMap<>();
         pizzaDeliveryMap.put(11, 5.0f);
         pizzaDeliveryMap.put(90, 1.0f);
 
         database.save(new SellableInfo(1001, TributaryCategory.service, 0, "Five Large Pizzas Delivery", SellableClass.service, pizzaDeliveryMap));
 
-        pizzaDeliveryMap = new HashMap<Integer, Float>();
+        pizzaDeliveryMap = new HashMap<>();
         pizzaDeliveryMap.put(1000, 5.0f);
         pizzaDeliveryMap.put(1001, 2.0f);
 
@@ -58,7 +58,7 @@ public class HelperMethods {
         database.save(new SellableInfo(painterServiceID, TributaryCategory.service, 100, "Painter", SellableClass.service));
         database.save(new SellableInfo(painterServiceID, TributaryCategory.household, 30, "Paint", SellableClass.product));
 
-        Map<Integer, Float> paintingServiceMap = new HashMap<Integer, Float>();
+        Map<Integer, Float> paintingServiceMap = new HashMap<>();
         paintingServiceMap.put(painterServiceID, 1.0f);
         paintingServiceMap.put(paintProductID, 2.5f);
 
@@ -67,7 +67,7 @@ public class HelperMethods {
 
     }
 
-    static Tax CreateDemoTax (){
+    static Tax createDemoTax (){
         Tax retTax = new Tax("Imposto Governo Malvado 1");
         System.out.println("Creating Tax");
 

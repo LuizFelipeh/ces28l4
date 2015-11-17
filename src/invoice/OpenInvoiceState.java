@@ -11,8 +11,7 @@ class OpenInvoiceState implements InvoiceState {
 
     @Override
     public long validate(InvoiceValidator invoiceValidator, Invoice invoice) throws InvalidInvoiceException, ImmutableObjectException {
-        long id = invoiceValidator.validate(invoice);
-        return id;
+        return invoiceValidator.validate(invoice);
     }
 
     @Override
