@@ -1,5 +1,6 @@
 package databases;
 
+import invoice.InvalidInvoiceException;
 import invoice.Invoice;
 import invoice.InvoiceDatabaseHistory;
 import invoice.InvoiceDatabaseSaver;
@@ -33,12 +34,14 @@ public class MockInvoiceDatabase implements InvoiceDatabaseHistory, InvoiceDatab
     @Override
     public long save(Invoice invoice) {
         _currentID ++;
-        TaxHistoryObject taxHistoryObject = new TaxHistoryObject(invoice.getTotal(), new Date(), invoice.getTaxation());
+        TaxHistoryObject taxHistoryObject = null;
+        try {
+            taxHistoryObject = new TaxHistoryObject(invoice.getTotal(), new Date(), invoice.getTaxation());
+        } catch (InvalidInvoiceException e) {
+            return -1;
+        }
         taxHistory.add(taxHistoryObject);
         return _currentID;
     }
 
-    public static MockInvoiceDatabase getInstance() {
-        return null;
-    }
 }
