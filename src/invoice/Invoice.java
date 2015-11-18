@@ -1,5 +1,6 @@
 package invoice;
 
+import sellables.Sellable;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import taxes.Taxable;
 
@@ -56,17 +57,18 @@ public class Invoice {
         sb.append(_state.toString());
         if(_id != -1)
         {
-            sb.append("Invoice ID Number " + _id + "\n");
-            sb.append("Emited at: " + getDate() + "\n\n");
+            sb.append("Invoice ID Number ").append(_id).append("\n");
+            sb.append("Emited at: ").append(getDate()).append("\n\n");
         }
         for (Item item : _items) {
-            sb.append(item.toString());
+            item.getSellable().toPrint(item.getQuantity(), 0, sb);
+
         }
-        sb.append("    |  " + "       Partial Value  |  " + "$").append(String.format("%.2f", getTotal())).append("\n");
+        sb.append("       " + "       Partial Value  |  " + "$").append(String.format("%.2f", getTotal())).append("\n");
 
         sb.append("\nTaxes:\n");
         for (Map.Entry<String, Float> entry : _taxations.entrySet()) {
-            sb.append(String.format("   %20s", entry.getKey()));
+            sb.append(String.format("   %30s", entry.getKey()));
             sb.append(" |  ");
             sb.append(String.format("$%.2f\n", entry.getValue()));
         }
@@ -74,9 +76,9 @@ public class Invoice {
         float taxation;
         try {
              taxation = getTaxation();
-            sb.append("    |  " + "           Tax Value  |  " + "$").append(String.format("%.2f", taxation)).append("\n");
+            sb.append("       " + "           Tax Value  |  " + "$").append(String.format("%.2f", taxation)).append("\n");
 
-            sb.append("    |  " + "         Total Value  |  " + "$").append(String.format("%.2f", getTotal() + taxation)).append("\n");
+            sb.append("       " + "         Total Value  |  " + "$").append(String.format("%.2f", getTotal() + taxation)).append("\n");
         } catch (InvalidInvoiceException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

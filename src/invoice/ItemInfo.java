@@ -44,4 +44,8 @@ public class ItemInfo {
     public Sellable getSellable() {
         return _sellable;
     }
+
+    public Map<Sellable,Float> getComponents() {
+        return _sellable.getComponents();
+    }
 }

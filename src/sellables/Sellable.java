@@ -53,7 +53,7 @@ public abstract class Sellable {
             }
 
             // In case it is
-            Map<Sellable, Float> childComponents = componentSellable.getChildComponents();;
+            Map<Sellable, Float> childComponents = componentSellable.getChildComponents();
             for (Map.Entry<Sellable, Float> childComponent : childComponents.entrySet())
             {
                 Sellable childComponentSellable = childComponent.getKey();
@@ -84,10 +84,19 @@ public abstract class Sellable {
     }
 
     @Override
-    public boolean equals(Object other)
-    {
-        if(other.getClass() != getClass()) return false;
-        return ((Sellable) other)._sellableInfo.getId() == _sellableInfo.getId();
+    public boolean equals(Object other) {
+        return other.getClass() == getClass() && ((Sellable) other)._sellableInfo.getId() == _sellableInfo.getId();
+    }
+
+    public String toPrint(float quantity, int depth, StringBuilder sb) {
+        for (int i = 0; i < depth; i++) {
+            sb.append("    ");
+        }
+        sb.append("|").append(String.format("%10d", getId())).append("  |  ").append(quantity).append(" | ").append(String.format("%-50s", getName())).append("  |  ").append("$").append(String.format("%.2f", getPrice())).append("\n");
+        for (Map.Entry<Sellable, Float> entry : _components.entrySet()) {
+            entry.getKey().toPrint(entry.getValue(), depth + 1, sb);
+        }
+        return sb.toString();
     }
 
     @Override

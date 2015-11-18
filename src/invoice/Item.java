@@ -45,12 +45,20 @@ public class Item implements Taxable {
         return result;
     }
 
+    public Map<Sellable, Float> getComponents() {
+        return _info.getComponents();
+    }
+
     public String toString() {
-        return _info.getId() + "  |  " + String.format("%20s", _info.getName()) + "  |  " + "$" + String.format("%.2f", getPrice()) + "\n";
+        return String.format("%10d", _info.getId()) + "  |  " + _info.getQuantity() + " | "+ String.format("%-50s", _info.getName()) + "  |  " + "$" + String.format("%.2f", getPrice()) + "\n";
     }
 
     public void setQuantity(float newQuantity) {
         _info.setQuantity(newQuantity);
+    }
+
+    public Sellable getSellable() {
+        return _info.getSellable();
     }
 
 }
