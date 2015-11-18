@@ -21,6 +21,9 @@ public class Invoice {
         _items = new ArrayList<>();
         _taxations = new TreeMap<>();
         _validator = validator;
+        if(itemInfos==null || itemInfos.length == 0){
+            throw new InvalidParameterException("No items.");
+        }
         addItem(itemInfos);
     }
 
@@ -48,6 +51,7 @@ public class Invoice {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(_state.toString());
         for (Item item : _items) {
             sb.append(item.toString());
         }
