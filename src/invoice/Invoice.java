@@ -12,9 +12,10 @@ import java.util.*;
 public class Invoice {
     private List<Item> _items;
     private InvoiceState _state;
-    private long _id;
+    private long _id = -1;
     private InvoiceValidator _validator;
     private Map<String, Float> _taxations;
+    private Date _date;
 
     public Invoice(InvoiceValidator validator, ItemInfo... itemInfos) throws InvalidParameterException, ImmutableObjectException {
         _state = new OpenInvoiceState();
@@ -33,6 +34,7 @@ public class Invoice {
 
     public long validate() throws InvalidInvoiceException, ImmutableObjectException {
         _id = _state.validate(_validator, this);
+        _date = new Date();
         _state = new ClosedInvoiceState();
         return _id;
     }
@@ -52,6 +54,11 @@ public class Invoice {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(_state.toString());
+        if(_id != -1)
+        {
+            sb.append("Invoice ID Number " + _id + "\n");
+            sb.append("Emited at: " + getDate() + "\n\n");
+        }
         for (Item item : _items) {
             sb.append(item.toString());
         }
@@ -98,4 +105,7 @@ public class Invoice {
         return _state.getTaxation(_taxations);
     }
 
+    public Date getDate() {
+        return _date;
+    }
 }
