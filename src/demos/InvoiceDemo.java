@@ -25,6 +25,13 @@ public class InvoiceDemo {
         Tax demoTax = HelperMethods.createDemoTax();
         validator.addTaxes(demoTax);
 
+        Tax otherDemoTax = HelperMethods.createOtherDemoTax();
+        validator.addTaxes(otherDemoTax);
+
+        Tax goodDemoTax = HelperMethods.createGoodDemoTax();
+        validator.addTaxes(goodDemoTax);
+
+
         // first Invoice
         Sellable steak, coke, water, partypizza;
         try {
@@ -52,6 +59,22 @@ public class InvoiceDemo {
 
         System.out.println("------------------------------");
         System.out.println(invoice.toString());
+
+        //Second Invoice
+
+        Invoice invoice2 = new Invoice(validator, new ItemInfo(steak, 1), new ItemInfo(coke, 1), new ItemInfo(partypizza, 3));
+        invoice2.addItem(new ItemInfo(water, 5));
+
+
+        try {
+            invoice2.validate();
+        }
+        catch (InvalidInvoiceException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("------------------------------");
+        System.out.println(invoice2.toString());
 
 
 

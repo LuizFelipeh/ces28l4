@@ -43,4 +43,9 @@ class ClosedInvoiceState implements InvoiceState {
         }
         return  taxation;
     }
+
+    public String toString(){
+        return("Invoice currently closed for modification.\n");
+    }
+
 }

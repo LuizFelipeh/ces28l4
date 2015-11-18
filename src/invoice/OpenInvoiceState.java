@@ -46,7 +46,15 @@ class OpenInvoiceState implements InvoiceState {
     }
 
     @Override
-    public float getTaxation(Map<String, Float> taxations) throws InvalidInvoiceException {
-        throw new InvalidInvoiceException("Invoice was not taxed yet!");
+    public float getTaxation(Map<String, Float> taxations) {
+        float taxation = 0;
+        for (Map.Entry<String, Float> entry : taxations.entrySet()) {
+            taxation += entry.getValue();
+        }
+        return  taxation;
+    }
+
+    public String toString(){
+        return("Invoice currently in eleboration.\n");
     }
 }

@@ -78,9 +78,28 @@ public class HelperMethods {
         System.out.println("Creating ServiceTaxRule and adding to the rules");
 
 
-        //for(TaxRule taxRule : taxRuleList){
-        //    retTax.addRule(taxRule);
-        //}
+        return retTax;
+    }
+
+    static Tax createOtherDemoTax (){
+        Tax retTax = new Tax("Imposto Governo Malvado 2");
+        System.out.println("Creating Tax");
+
+        HistoryDependantTaxRule historyTax = new HistoryDependantTaxRule();
+        retTax.addRule(historyTax);
+        System.out.println("Creating HistoryDependantTaxRule and adding to the rules");
+
+        return retTax;
+    }
+
+    public static Tax createGoodDemoTax() {
+        Tax retTax = new Tax("Imposto Governo Bonzinho 1");
+        System.out.println("Creating Tax");
+
+        DiscountHistoryDependantTaxRule discountTax = new DiscountHistoryDependantTaxRule();
+        retTax.addRule(discountTax);
+        System.out.println("Creating DiscountHistoryDependantTaxRule and adding to the rules");
+
 
         return retTax;
     }
